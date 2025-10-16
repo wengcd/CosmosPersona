@@ -345,7 +345,12 @@ function showResult() {
 
     document.getElementById('quiz').style.display = 'none'; // Hide the quiz
     document.getElementById('result').style.display = 'block'; // Show the result
-    document.getElementById('restart-button').style.display = 'block'; // Show the restart button
+    
+    // 检查 restart-button 是否存在再显示
+    const restartBtn = document.getElementById('restart-button');
+    if (restartBtn) {
+        restartBtn.style.display = 'block'; // Show the restart button
+    }
 }
 
 
@@ -359,7 +364,11 @@ function restartQuiz() {
     displayQuestion(); // Start the quiz from the beginning
 }
 
-document.getElementById('restart-button').addEventListener('click', restartQuiz);
+// 检查 restart-button 是否存在再添加事件监听器
+const restartButton = document.getElementById('restart-button');
+if (restartButton) {
+    restartButton.addEventListener('click', restartQuiz);
+}
 
 displayQuestion();
 
