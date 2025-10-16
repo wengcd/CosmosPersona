@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# 允许搜索引擎索引所有页面
+Sitemap: https://wengcd.github.io/CosmosPersona/sitemap.xml
+

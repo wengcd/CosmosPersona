@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>离线功能测试</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .status-box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+        .status {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        .online { background: #4caf50; color: white; }
+        .offline { background: #f44336; color: white; }
+        .success { color: #4caf50; }
+        .error { color: #f44336; }
+        button {
+            background: #843b62;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #6b2d4f;
+        }
+        #log {
+            background: #f9f9f9;
+            padding: 15px;
+            border-radius: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        .log-item {
+            margin: 5px 0;
+            padding: 5px;
+            border-left: 3px solid #843b62;
+            padding-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🚀 CosmosPersona 离线功能测试</h1>
+    
+    <div class="status-box">
+        <h2>网络状态</h2>
+        <p>当前状态: <span id="network-status" class="status online">在线</span></p>
+    </div>
+
+    <div class="status-box">
+        <h2>Service Worker 状态</h2>
+        <p id="sw-status">检查中...</p>
+        <p id="cache-status"></p>
+    </div>
+
+    <div class="status-box">
+        <h2>测试步骤</h2>
+        <ol>
+            <li>确保你已经访问过主页 (index.html) 至少一次</li>
+            <li>检查下方的 Service Worker 和缓存状态</li>
+            <li>打开浏览器开发者工具 (F12)</li>
+            <li>在 Network 标签中勾选 "Offline"</li>
+            <li>点击下方按钮测试离线访问</li>
+        </ol>
+        <button onclick="testOfflineAccess()">测试离线访问主页</button>
+        <button onclick="clearCache()">清除缓存</button>
+        <button onclick="location.reload()">刷新页面</button>
+    </div>
+
+    <div class="status-box">
+        <h2>测试日志</h2>
+        <div id="log"></div>
+    </div>
+
+    <script>
+        const log = document.getElementById('log');
+        const networkStatus = document.getElementById('network-status');
+
+        function addLog(message, type = 'info') {
+            const item = document.createElement('div');
+            item.className = 'log-item';
+            const time = new Date().toLocaleTimeString('zh-CN');
+            item.innerHTML = `<strong>[${time}]</strong> ${message}`;
+            if (type === 'success') item.style.color = '#4caf50';
+            if (type === 'error') item.style.color = '#f44336';
+            log.insertBefore(item, log.firstChild);
+        }
+
+        // 检查网络状态
+        function updateNetworkStatus() {
+            if (navigator.onLine) {
+                networkStatus.textContent = '在线';
+                networkStatus.className = 'status online';
+            } else {
+                networkStatus.textContent = '离线';
+                networkStatus.className = 'status offline';
+            }
+        }
+
+        window.addEventListener('online', () => {
+            updateNetworkStatus();
+            addLog('网络已恢复连接', 'success');
+        });
+
+        window.addEventListener('offline', () => {
+            updateNetworkStatus();
+            addLog('网络已断开', 'error');
+        });
+
+        // 检查 Service Worker
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(registrations => {
+                if (registrations.length > 0) {
+                    document.getElementById('sw-status').innerHTML = 
+                        '<span class="success">✓ Service Worker 已注册</span>';
+                    addLog('Service Worker 已注册并激活', 'success');
+                    
+                    // 检查缓存
+                    caches.keys().then(cacheNames => {
+                        if (cacheNames.length > 0) {
+                            document.getElementById('cache-status').innerHTML = 
+                                `<span class="success">✓ 找到 ${cacheNames.length} 个缓存</span>`;
+                            cacheNames.forEach(name => {
+                                addLog(`缓存: ${name}`, 'success');
+                            });
+                        } else {
+                            document.getElementById('cache-status').innerHTML = 
+                                '<span class="error">✗ 未找到缓存</span>';
+                            addLog('警告: 未找到缓存，请先访问主页', 'error');
+                        }
+                    });
+                } else {
+                    document.getElementById('sw-status').innerHTML = 
+                        '<span class="error">✗ Service Worker 未注册</span>';
+                    addLog('警告: Service Worker 未注册，请先访问主页', 'error');
+                }
+            });
+        } else {
+            document.getElementById('sw-status').innerHTML = 
+                '<span class="error">✗ 浏览器不支持 Service Worker</span>';
+            addLog('错误: 当前浏览器不支持 Service Worker', 'error');
+        }
+
+        // 测试离线访问
+        function testOfflineAccess() {
+            addLog('开始测试离线访问...');
+            window.open('index.html', '_blank');
+            addLog('已在新标签页打开主页，请检查是否能正常显示', 'success');
+        }
+
+        // 清除缓存
+        async function clearCache() {
+            if (confirm('确定要清除所有缓存吗？')) {
+                try {
+                    const cacheNames = await caches.keys();
+                    await Promise.all(cacheNames.map(name => caches.delete(name)));
+                    addLog(`已清除 ${cacheNames.length} 个缓存`, 'success');
+                    
+                    const registrations = await navigator.serviceWorker.getRegistrations();
+                    await Promise.all(registrations.map(reg => reg.unregister()));
+                    addLog('已卸载 Service Worker', 'success');
+                    
+                    setTimeout(() => location.reload(), 1000);
+                } catch (error) {
+                    addLog(`清除失败: ${error.message}`, 'error');
+                }
+            }
+        }
+
+        // 初始化
+        updateNetworkStatus();
+        addLog('离线功能测试页面已加载');
+    </script>
+</body>
+</html>
+

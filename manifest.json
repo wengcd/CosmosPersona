@@ -1,0 +1,25 @@
+{
+  "name": "宇宙人格 - CosmosPersona",
+  "short_name": "宇宙人格",
+  "description": "一个有趣的宇宙主题性格测试",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffb997",
+  "theme_color": "#843b62",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "images/izeecon.PNG",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "images/izeecon.PNG",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
+

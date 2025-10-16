@@ -5,9 +5,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>宇宙人格 - CosmosPersona</title>
+    <meta name="description" content="一个受 MBTI 启发的趣味宇宙主题性格测试，发现你的专属宇宙人格！">
+    <meta name="keywords" content="性格测试,MBTI,宇宙,人格测试,心理测试">
+    <meta name="theme-color" content="#843b62">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa&display=swap">
     <link rel="icon" type="image/x-icon" href="images/izeecon.PNG">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="images/izeecon.PNG">
+    <!-- 预加载关键资源 -->
+    <link rel="preload" href="finalscript.js" as="script">
+    <link rel="preload" href="images/main.gif" as="image">
+    <link rel="preload" href="images/Q1.gif" as="image">
 </head>
 <body>
     <div class="quiz-container">
@@ -17,13 +25,13 @@
             <p>开启一段穿越时空的旅程，发现你的专属人格！</p>
             <!-- Add an input field for the user's name -->
             <!--input type="text" id="user-name" placeholder="Your Name"-->
-            <img src="images/main.gif" class="top-image">
+            <img src="images/main.gif" class="top-image" alt="宇宙人格主题图" loading="eager">
             <button id="start-button" class="start-button">开始游戏</button>
             <a href="Info/" target="_blank" rel="noopener noreferrer"><button class="start-button">了解更多</button></a>
             <!--a href="gal.html" target="_blank" rel="noopener noreferrer"><button class="start-button">Learn</button></a-->  
             <br>
             <p1>一个受 MBTI 类型、先天性格特质、Cake resume 等启发的趣味性格测试</p1>
-            <p1>制作者：I-see Warisa Jaidee</p1>
+            <p1>制作者：wengcd</p1>
         </div>
 
         <div class="quiz-page" id="quiz-page" style="display: none;">
@@ -67,6 +75,20 @@
         </div>
     </div>
     <script src="finalscript.js"></script>
+    <script>
+        // 注册 Service Worker 实现离线访问
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('Service Worker 注册成功:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('Service Worker 注册失败:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>
 

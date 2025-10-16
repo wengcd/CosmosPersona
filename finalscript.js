@@ -246,7 +246,8 @@ function displayQuestion() {
     if (question) {
         let html = `<p>${question.question}</p>`;
         if (question.image) {
-            html += `<img src="${question.image}" alt="Question ${currentQuestion + 1}">`;
+            // 添加 loading="lazy" 实现图片懒加载
+            html += `<img src="${question.image}" alt="Question ${currentQuestion + 1}" loading="lazy">`;
         }
         for (const option in question.answers) {
             html += `<button class="large-rectangular" value="${option}" id="${option}">${question.answers[option].text}</button>`;

@@ -1,0 +1,24 @@
+# 启用 GZIP 压缩
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+</IfModule>
+
+# 设置浏览器缓存
+<IfModule mod_expires.c>
+    ExpiresActive On
+    # 图片缓存 1 个月
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    # CSS 和 JS 缓存 1 周
+    ExpiresByType text/css "access plus 1 week"
+    ExpiresByType application/javascript "access plus 1 week"
+    # HTML 不缓存
+    ExpiresByType text/html "access plus 0 seconds"
+</IfModule>
+
+# 启用 Keep-Alive
+<IfModule mod_headers.c>
+    Header set Connection keep-alive
+</IfModule>
+
