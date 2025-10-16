@@ -2,183 +2,183 @@
 
 const questions = [
     {
-        question: "Q1/12: You're taking the bus on your way back home. It's been a loooong day, what are you thinking about?",
+        question: "第1题/共12题：你正在回家的公交车上。这是漫长的一天，你在想什么？",
         image: "images/Q1.gif",
         answers: {
             F: {
-                text: "I'm just so tired and can't wait to go home. Why does everyday feel the same...",
+                text: "我太累了，迫不及待想回家。为什么每天都感觉一样...",
                 scores: { T: 0, F: +1 },
             },
             T: {
-                text: "Should I rest or work first when I get home? Most importantly, what's for dinner?",
+                text: "回家后应该先休息还是先工作？最重要的是，晚餐吃什么？",
                 scores: { T: +1, F: 0 },
             },
         },
     },
     {
-        question: "Q2/12: You look outside the windows, seems like it's going to rain soon. Suddenly everything turns into darkness!!",
+        question: "第2题/共12题：你望向窗外，看起来快要下雨了。突然，一切陷入黑暗！！",
         image: "images/Q2.gif",
         answers: {
             J: {
-                text: "I don't remember this tunnel. *Pull out your phone to look at the map*",
+                text: "我不记得有这个隧道。*掏出手机查看地图*",
                 scores: { P: 0, J: +1 },
             },
             P: {
-                text: "*Turn around to see the other's reaction* Should I ask the driver what's going on?",
+                text: "*转身看看其他人的反应* 我应该问问司机发生了什么吗？",
                 scores: { P: +1, J: 0 },
             },
         },
     },
     {
-        question: "Q3/12: Before you can do anything, the bus stops and everything around you floats up!",
+        question: "第3题/共12题：你还没来得及做任何事，公交车停了下来，周围的一切都漂浮起来！",
         image: "images/Q3.gif",
         answers: {
             S: {
-                text: "Ok this is weird, am I dreaming? *pinch your arm*",
+                text: "好吧，这很奇怪，我是在做梦吗？*掐一下自己的手臂*",
                 scores: { S: +1, N: 0 },
             },
             N: {
-                text: "Is this a prank? Am I getting kidnapped by aliens?!",
+                text: "这是恶作剧吗？我被外星人绑架了吗？！",
                 scores: { S: 0, N: +1 },
             },
         },
     },
     {
-        question: "Q4/12: Amidst the surprise, your eyes catch something drifting past the window.",
+        question: "第4题/共12题：在惊讶中，你的眼睛捕捉到窗外飘过的东西。",
         image: "images/Q4.gif",
         answers: {
             F: {
-                text: "Woahhh...so many cats! How cute!! I wanna give them a hug!",
+                text: "哇...好多猫咪！好可爱啊！！我想抱抱它们！",
                 scores: { T: 0, F: +1 },
             },
             T: {
-                text: "Cats? In space? That's kinda odd... How do they survive out there?!",
+                text: "猫？在太空？这有点奇怪...它们怎么在那里生存的？！",
                 scores: { T: +1, F: 0 },
             },
         },
     },
     {
-        question: "Q5/12: 'Welcome Aboard!' a small robot appears and announces, 'We will reach our destination in 5 months 6 days and 2 hours!'",
+        question: "第5题/共12题：'欢迎登船！'一个小机器人出现并宣布，'我们将在5个月6天零2小时后到达目的地！'",
         image: "images/Q5.gif",
         answers: {
             P: {
-                text: "Cool! A space cruise?! Where are we going? Do I get a spacesuit? This is so exciting!",
+                text: "酷！太空邮轮？！我们要去哪里？我能得到宇航服吗？这太令人兴奋了！",
                 scores: { P: +1, J: 0 },
             },
             J: {
-                text: "Hey uh...Am I in space? How did I get here? When can I go home?! Why..",
+                text: "嘿，呃...我在太空吗？我怎么到这里的？我什么时候能回家？！为什么...",
                 scores: { P: 0, J: +1 },
             },
         },
     },
     {
-        question: "Q6/12: The robot just points to the back of the bus which now looks more like inside of a spaceship! What do you want to see first?",
+        question: "第6题/共12题：机器人指向公交车的后方，现在看起来更像是宇宙飞船的内部！你想先看什么？",
         image: "images/Q6.gif",
         answers: {
             I: {
-                text: "Solar system themed fountain in the middle. I want to take pictures with it.",
+                text: "中间的太阳系主题喷泉。我想和它拍照。",
                 scores: { I: 0, E: +1 },
             },
             E: {
-                text: "Cozy corner with a massaging chair. I need to sit down and process.",
+                text: "有按摩椅的舒适角落。我需要坐下来好好想想。",
                 scores: { I: +1, E: 0 },
             },
         },
     },
     {
-        question: "Q7/12: On the way back to your seat, you are surrounded by cats! 'Unauthorized passenger detected, CAPTURE CAPTURE!'",
+        question: "第7题/共12题：在回座位的路上，你被猫咪们包围了！'检测到未授权乘客，抓住抓住！'",
         image: "images/Q7.gif",
         answers: {
             S: {
-                text: "Woah! What do you mean unauthorized? I'm the passenger of this cruise!",
+                text: "哇！什么叫未授权？我就是这艘邮轮的乘客！",
                 scores: { S: +1, N: 0 }
             },
             N: {
-                text: "Ok, I have no idea what's going on. How about we calm down and chat for a bit?",
+                text: "好吧，我完全不知道发生了什么。我们冷静下来聊聊怎么样？",
                 scores: { S: 0, N: +1 },
             },
         },
     },
     {
-        question: "Q8/12: Suddenly, the robot glides in, it whispers something to the cats that makes them stop.",
+        question: "第8题/共12题：突然，机器人滑了进来，它对猫咪们低语了些什么，让它们停了下来。",
         image: "images/Q8.gif",
         answers: {
             E: {
-                text: "Bob!! Thank you! You come to save me, right?",
+                text: "Bob！谢谢你！你是来救我的，对吧？",
                 scores: { E: +1, I: 0 },
             },
             I: {
-                text: "HA! That's right! Back off, cats! Am I safe to go now?!",
+                text: "哈！没错！退后，猫咪们！我现在可以安全离开了吗？！",
                 scores: { E: 0, I: +1 },
             },
         },
     },
     {
-        question: "Q9/12: The robot transforms into a giant vacuum cleaner, the cats use it to point at you!",
+        question: "第9题/共12题：机器人变成了一个巨大的吸尘器，猫咪们用它指向你！",
         image: "images/Q9.gif",
         answers: {
             J: {
-                text: "Throw your coat at them as distraction, run towards the big green 'EXIT' sign!",
+                text: "把外套扔给它们作为干扰，跑向那个绿色的大\"出口\"标志！",
                 scores: { J: +1, P: 0 },
             },
             P: {
-                text: "Run in random direction, confuse them, blend in with the crowd!",
+                text: "随机方向奔跑，迷惑它们，混入人群中！",
                 scores: { J: 0, P: +1 },
             },
         },
     },
-    {
-        question: "Q10/12: You run past the gift shop. Looks like you got rid of them. It wouldn't hurt to get some souvenirs, right?",
+    {   
+        question: "第10题/共12题：你跑过礼品店。看起来你甩掉它们了。买点纪念品应该没问题吧？",
         image: "images/Q10.gif",
         answers: {
             F: {
-                text: "Get the Jupiter headphone, wear it to hear people's thoughts!",
+                text: "拿木星耳机，戴上它可以听到别人的想法！",
                 scores: { F: +1, T: 0 },
             },
             T: {
-                text: "Get the Mars watch, turn it and you can time travel!",
+                text: "拿火星手表，转动它就可以时光旅行！",
                 scores: { F: 0, T: +1 },
             },
         },
 
     },
     {
-        question: "Q11/12: The giant vacuum cleaner suddenly emerges in front of you! You're sucked into its vortex!!!",
+        question: "第11题/共12题：巨型吸尘器突然出现在你面前！你被吸入它的漩涡中！！！",
         image: "images/Q11.gif",
         answers: {
             S: {
-                text: "It's ok, this is just a dream! I'll wake up soon! *close your eyes and give up*",
+                text: "没关系，这只是一场梦！我很快就会醒来的！*闭上眼睛放弃挣扎*",
                 scores: { S: +1, N: 0 },
             },
             N: {
-                text: "I'll find the way out! Maybe there are some secret doors! *look around for the way out*",
+                text: "我会找到出路的！也许有一些秘密门！*四处寻找出路*",
                 scores: { S: 0, N: +1 },
             },
         },
     },
     {
-        question: "Q12/12: After a moment of darkness, you find yourself back in the bus. 'Are you alright?' the ticket inspector asks",
+        question: "第12题/共12题：经过短暂的黑暗后，你发现自己回到了公交车上。'你还好吗？'检票员问道",
         image: "images/Q12.gif",
         answers: {
             I: {
-                text: "Woah! I thought I was captured... Nevermind! I'm alright now, I guess? *panic in silence*",
+                text: "哇！我以为我被抓住了...算了！我现在还好，我想？*默默恐慌*",
                 scores: { E: 0, I: +1 },
             },
             E: {
-                text: "You won't believe it...I think I just had the wildest dream ever! *tell him about your space adventure*",
+                text: "你不会相信的...我想我刚做了有史以来最疯狂的梦！*告诉他你的太空冒险*",
                 scores: { E: +1, I: 0 },
             },
         },
     },
     {
-        question: "When you look up again, the inspector's already gone. You glance outside the window, darkness creeps in as the bus enters another tunnel...",
+        question: "当你再次抬头时，检票员已经离开了。你瞥向窗外，随着公交车驶入另一个隧道，黑暗再次蔓延...",
         image: "images/Q13.gif",
         answers: {
             K: {
-                text: "Wait...was that Bob?",
+                text: "等等...那是Bob吗？",
             },
             U: {
-                text: "Oh no...Do I have to go through this again?",
+                text: "哦不...我还要再经历一次吗？",
             },
         },
     },
